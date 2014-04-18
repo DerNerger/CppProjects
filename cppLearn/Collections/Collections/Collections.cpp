@@ -3,24 +3,32 @@
 
 #include "stdafx.h"
 #include <iostream>
-#include "Foo.h"
+#include "Node.h"
+#include <tchar.h>
+#include "SLList.h"
 
 using namespace std;
 
-/*
-template <class T>
-class Node
-{
-public:
-	T content;
-};
-*/
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	//http://www.parashift.com/c++-faq-lite/templates-defn-vs-decl.html
-	Foo<int> f;
-	f.someMethod(4);
+	SLList<int> myList;
+	cout << myList.getSize() << endl;
+	cout << myList.isEmpty() << endl;
+
+	myList.add(1);
+	myList.add(2);
+	myList.add(3);
+	myList.add(4);
+	
+
+	SLList<int> myListCopy(&myList);
+	myListCopy.add(15);
+
+	cout << myList.toString() << endl;
+	myList.clear();
+	cout << myList.toString() << endl;
+
 	getchar();
 	return 0;
 }
