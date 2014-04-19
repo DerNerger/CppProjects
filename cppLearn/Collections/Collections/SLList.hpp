@@ -79,6 +79,18 @@ string SLList<T>::toString()
 }
 
 template<class T>
+T SLList<T>::getLast()
+{
+	return last->getContent();
+}
+
+template<class T>
+T SLList<T>::getFirst()
+{
+	return first->getContent();
+}
+
+template<class T>
 void SLList<T>::clear()
 {
 	//TODO implementation is crap!!!
@@ -87,3 +99,4 @@ void SLList<T>::clear()
 	last = nullptr;
 	size = 0;
 }
+

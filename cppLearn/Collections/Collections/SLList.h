@@ -13,6 +13,8 @@ public:
 	void add(T elem);
 	string toString();
 	void clear();
+	T getLast();
+	T getFirst();
 private:
 	Node<T>* first;
 	Node<T>* last;
