@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Collections", "Collections\Collections.vcxproj", "{6F93761C-AB86-43F7-A9F2-6B80B6BD3355}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Quicksort", "Quicksort\Quicksort.vcxproj", "{694488BA-3C8C-4EC9-BACD-618D80585740}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +17,10 @@ Global
 		{6F93761C-AB86-43F7-A9F2-6B80B6BD3355}.Debug|Win32.Build.0 = Debug|Win32
 		{6F93761C-AB86-43F7-A9F2-6B80B6BD3355}.Release|Win32.ActiveCfg = Release|Win32
 		{6F93761C-AB86-43F7-A9F2-6B80B6BD3355}.Release|Win32.Build.0 = Release|Win32
+		{694488BA-3C8C-4EC9-BACD-618D80585740}.Debug|Win32.ActiveCfg = Debug|Win32
+		{694488BA-3C8C-4EC9-BACD-618D80585740}.Debug|Win32.Build.0 = Debug|Win32
+		{694488BA-3C8C-4EC9-BACD-618D80585740}.Release|Win32.ActiveCfg = Release|Win32
+		{694488BA-3C8C-4EC9-BACD-618D80585740}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
