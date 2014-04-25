@@ -88,7 +88,6 @@ void quickSort(int arr[], int l, int r)
 	if(l<r)
 	{
 		int pivIndex = partition(arr, l, r);
-		print(arr,10);
 		quickSort(arr,l, pivIndex-1);
 		quickSort(arr, pivIndex+1, r);
 	}
@@ -98,9 +97,8 @@ int partition(int arr[], int l, int r)
 {
 	int piv = arr[r];
 	int pl = l;
-	int pr = r-1;
-	while(pl<pr)
-	{
+	int pr = r;
+	do {
 		while(pl<pr && arr[pl]<=piv)
 			pl++;
 		while(pl<pr && arr[pr]>=piv)
@@ -111,7 +109,7 @@ int partition(int arr[], int l, int r)
 			arr[pl]=arr[pr];
 			arr[pr]=t;
 		}
-	}
+	} while(pl<pr);
 	arr[r]=arr[pl];
 	arr[pl]=piv;
 	return pl;
