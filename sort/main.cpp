@@ -14,7 +14,7 @@ int partition(int arr[], int l, int r);
 
 int main()
 {
-	int arr[]={6,8,4,3,0,2,9,7,1,5};
+	int arr[]={7,5,9,3,6,2,0,8,1,4};
 	print(arr, sizeof(arr)/sizeof(arr[0]));
 	//selectionSort(arr, sizeof(arr)/sizeof(arr[0]));	
 	//insertionSort(arr, sizeof(arr)/sizeof(arr[0]));
@@ -84,13 +84,13 @@ void bubbleSort(int arr[], int length)
 
 //Element of O(n*ld(n))
 void quickSort(int arr[], int l, int r)
-{
-	if(l<r)
-	{
-		int pivIndex = partition(arr, l, r);
+{	
+	print(arr,10);
+	int pivIndex = partition(arr, l, r);
+	if(l<pivIndex-1)
 		quickSort(arr,l, pivIndex-1);
+	if(pivIndex+1<r)
 		quickSort(arr, pivIndex+1, r);
-	}
 }
 
 int partition(int arr[], int l, int r)
@@ -98,23 +98,21 @@ int partition(int arr[], int l, int r)
 	int piv = arr[r];
 	int pl = l;
 	int pr = r;
-	do {
-		while(pl<pr && arr[pl]<=piv)
+	while(pl<pr)
+	{
+		while(arr[pl]<=piv)
 			pl++;
-		while(pl<pr && arr[pr]>=piv)
+		while(arr[pr]>=piv)
 			pr--;
-		if(pl<pr)
+		if(pl!=pr)
 		{
-			int t = arr[pl];
+			cout << "Tausche " << pl << " und " << pr << endl;
+			int temp = arr[pl];
 			arr[pl]=arr[pr];
-			arr[pr]=t;
+			arr[pr]=temp;
 		}
-	} while(pl<pr);
+	}
 	arr[r]=arr[pl];
 	arr[pl]=piv;
 	return pl;
 }
-
-
-
-
