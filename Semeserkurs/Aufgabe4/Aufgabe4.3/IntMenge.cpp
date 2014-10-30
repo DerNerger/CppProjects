@@ -35,10 +35,8 @@ void IntMenge::print(){
 }
 
 int IntMenge::getMin(){
-    if(size()==0){
-        cout << "FEHLER Menge ist leer" << endl;
-        return -1;
-    }
+    if(size()==0)
+        throw "Fehler, Menge ist leer";
 
     int currentMin = vec[0];
     for (vector<int>::iterator it = vec.begin() ; it != vec.end(); it++)
@@ -47,10 +45,8 @@ int IntMenge::getMin(){
 }
 
 int IntMenge::getMax() {
-    if(size()==0){
-        cout << "FEHLER Menge ist leer" << endl;
-        return -1;
-    }
+    if(size()==0)
+        throw "Fehler, Menge ist leer";
     int currentMin = vec[0];
     for (vector<int>::iterator it = vec.begin() ; it != vec.end(); it++)
         currentMin = *it > currentMin ? *it : currentMin;

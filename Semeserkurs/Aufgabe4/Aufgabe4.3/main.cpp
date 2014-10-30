@@ -50,4 +50,13 @@ int main(){
    m.print();
    cout << "zweite Menge: ";
    m2.print();
+
+   cout << "leere Menge 1" << endl;
+   m.clear();
+   cout << "Suche Minimum in Menge 1" << endl;
+   try{
+      m.getMin();
+   } catch (const char *  e){
+       cout << e << endl;
+   }
 }
