@@ -1,3 +1,13 @@
+/*
+ * Taschenrechner.h
+ *
+ *  Created on: Nov 4, 2014
+ *      Author: kibellus
+ */
+
+#ifndef TASCHENRECHNER_H_
+#define TASCHENRECHNER_H_
+
 #include <iostream>
 #include <string>
 
@@ -23,6 +33,7 @@ class Taschenrechner{
 
 inline string Taschenrechner::getAnfrage(){
     return anfrage;
-    cout << anfrage << endl;
 }
 
+
+#endif /* TASCHENRECHNER_H_ */

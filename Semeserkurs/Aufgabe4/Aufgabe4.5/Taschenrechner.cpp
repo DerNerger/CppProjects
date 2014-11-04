@@ -1,7 +1,8 @@
 #include "Taschenrechner.h"
 #include <string>
+#include <sstream>
 
-Taschenrechner::Taschenrechner(string &a) : anfrage(a) { 
+Taschenrechner::Taschenrechner(string &a) : anfrage(a), error(0) {
     it = anfrage.begin();
 }
 
@@ -33,7 +34,7 @@ int Taschenrechner::readExpr(){
 }
 
 void Taschenrechner::overreadBlanks(){
-    if(isspace(*it))
+    while(isspace(*it))
         it++;
 }
 
@@ -78,7 +79,7 @@ int Taschenrechner::readFak(){
                 length++;
                 it++;
             }
-            result = stoi( anfrage.substr(currentPos, length) );
+            istringstream(anfrage.substr(currentPos, length)) >> result;
         } else {
         //Klammer
             c = *it; it++;
