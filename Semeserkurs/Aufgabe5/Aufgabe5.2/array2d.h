@@ -2,6 +2,9 @@
 #define ARRAY2D_H
 #include <cassert>
 #include <iostream>
+#include <assert.h> 
+
+using namespace std;
 
 template <typename T> class Array2d {
 public:
@@ -23,6 +26,14 @@ public:
   ~Array2d() { delete[] ptr; }
 
   Array2d &operator=(const Array2d &arr) = delete; // (noch) verbieten
+
+  template<size_t x, size_t y>
+  Array2d(T (&arr)[x][y])
+  :zeilen{x}, spalten{y}, ptr{new T[x*y]}{
+    for(int i = 0; i<x; i++)
+      for(int j = 0; j<y; j++)
+        ptr[y*i + j]=arr[i][j];
+  }
 
   Array2d &assign(Array2d tmp) {
     swap(tmp);
@@ -66,6 +77,9 @@ private:
   size_t zeilen;
   size_t spalten;
   T *ptr;
+
+  //template<typename T>
+  //friend Array2d<T> &mmult(Array2d<T> a, Array2d<T> b);
 };
 
 // Globale Funktion zur Ausgabe
@@ -76,5 +90,20 @@ template <typename T> void printArray(const Array2d<T> &a) {
     }
     std::cout << std::endl;
   }
+}
+
+template<typename T>
+Array2d<T> &mmult(Array2d<T> &a, Array2d<T> &b){ 
+  assert(a.getSpalten()==b.getZeilen());
+  Array2d<T> *result = new Array2d<T>(a.getZeilen(), b.getSpalten());
+  result->init(0);
+  for(int i = 0; i < a.getZeilen(); i++){
+    for(int j = 0; j < b.getSpalten(); j++){
+      T& val = result->at(i,j);
+      for(int k = 0; k < a.getSpalten(); k++)
+        val+= a.at(i,k) * b.at(k, j);
+    }
+  }
+  return *result;
 }
 #endif
