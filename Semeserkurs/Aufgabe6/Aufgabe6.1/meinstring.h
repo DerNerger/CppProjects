@@ -4,6 +4,7 @@
 #include <cstddef>    // size_t
 #include <iostream>   // ostream
 
+
 class MeinString {
   public:
    MeinString();                     // Default-Konstruktor
@@ -19,6 +20,7 @@ class MeinString {
    void reserve(size_t bytes);            // Platz reservieren mit Erhalt des Inhalts
    void shrink_to_fit();                  // Platz minimieren
    const char* c_str() const { return start;}  // C-String zurückgeben
+   void insert(size_t pos, const MeinString &s);
   private:
    size_t len;                         // Länge
    size_t cap;                         // Kapazität

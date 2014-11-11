@@ -72,7 +72,7 @@ MeinString& MeinString::assign(const char *s) {  // Zuweisung eines char*
    return *this;
 }
 
-char& MeinString::at(size_t position)  {  // Zeichen per Referenz holen
+char& MeinString::at(size_t position) {  // Zeichen per Referenz holen
     assert(position < len);               // Nullbyte lesen ist nicht erlaubt
     return start[position];
 }
@@ -80,6 +80,14 @@ char& MeinString::at(size_t position)  {  // Zeichen per Referenz holen
 const char& MeinString::at(size_t position) const   { // Zeichen holen
     assert(position < len);                           // Nullbyte lesen ist nicht erlaubt
     return start[position];
+}
+
+void MeinString::insert(size_t pos, const MeinString &s){
+    assert(pos>=0 && pos <= len);
+    reserve(len + s.len);
+    strcpy(start+pos+s.len, start+pos);
+    strncpy(start+pos, s.start, s.len);
+    len+=s.len;
 }
 
 void anzeigen(std::ostream& os, const MeinString& m)  {

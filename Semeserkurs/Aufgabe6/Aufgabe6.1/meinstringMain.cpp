@@ -22,8 +22,16 @@ int main() {
    cout << "zweiterString.length() : " << zweiterString.length() << endl;
    cout << "zweiterString.capacity() : " << zweiterString.capacity() << endl;
 
-//   einString.insert(5, " MASE");
-//   einString.insert(8, "T");
-//   einstring.ausgabe(cout, einString);
+   einString.insert(5, " MASE");
+   anzeigen(cout, einString);
+   std::cout << std::endl;
+   cout << "einString.length() : "   << einString.length()   << endl;
+   cout << "einString.capacity() : " << einString.capacity() << endl;
+
+   einString.insert(8, "T");
+   anzeigen(cout, einString);
+   std::cout << std::endl;
+   cout << "einString.length() : "   << einString.length()   << endl;
+   cout << "einString.capacity() : " << einString.capacity() << endl;
 }
 
