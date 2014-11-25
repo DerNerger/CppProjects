@@ -72,7 +72,7 @@ class Tree{
 
   public:
     Tree(Tree *left, Tree *right) : left(left), right(right) {}
-    Tree() : left(0), right(0) {} 
+    Tree() : left(0), right(0) {}
     virtual ~Tree(){
     	delete left;
     	delete right;
@@ -92,7 +92,9 @@ class NumberElement : public Tree{
     int number;
   public:
     NumberElement(int pNumber) : Tree(), number(pNumber) {} 
+    //virtual ~NumberElement() {Tree::~Tree();}
     virtual int eval(){
+    	//std::cout << "return " << number << std::endl;
       return number;
     }
 
@@ -128,10 +130,12 @@ class OperatorElement : public Tree{
         case '/' : op = DIV; break; 
       }
     }
+    //virtual ~OperatorElement() {Tree::~Tree();}
 
     virtual int eval(){
        int a = left->eval();
        int b = right->eval();
+       //std::cout << "return " << a << op << b << std::endl;
        switch(op){
          case ADD: return a + b;
          case SUB: return a - b;

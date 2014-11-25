@@ -10,6 +10,7 @@ int main(){
   diePersonen.push_back( new Student ("Spillner", "Julian", "123429"));
 
   Student s("","",""); //dummy-string
-  if(typeid(s) == typeid(*diePersonen[0]))
-    cout << dynamic_cast<Student*>(diePersonen[0])->getMatrikelnummer() << endl;
+  for(Person *p : diePersonen)
+    if(typeid(s) == typeid(*p))
+      cout << dynamic_cast<Student*>(p)->getMatrikelnummer() << endl;
 }
