@@ -35,8 +35,8 @@ MeinString& operator+=(MeinString& lhs){
 
 friend MeinString operator+(MeinString& a, MeinString& b){
   MeinString temp(a);
-  a+= b;
-  return b;
+  temp+= b;
+  return temp;
 }
 
 MeinString& operator=(const MeinString& rVal){

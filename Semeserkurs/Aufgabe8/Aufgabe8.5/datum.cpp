@@ -1,12 +1,11 @@
-#include"datum.h"
-#include<ctime>
-#include<cassert>  // besser: Exception verwenden
+#include "datum.h"
+#include <ctime>
 
 Datum::Datum()  { aktuell();}
 
-void Datum::set(int t, int m, int j) {
-   assert(istGueltigesDatum(t, m, j));
-    // besser: Exception verwenden, siehe Übungsaufgabe
+void Datum::set(int t, int m, int j)throw(UngueltigesDatumException) {
+   if(!istGueltigesDatum(t, m, j)) 
+       throw UngueltigesDatumException();
     tag_ = t;
     monat_ = m;
     jahr_ = j;
@@ -69,3 +68,47 @@ bool istGueltigesDatum(int t, int m, int j) {
             && t  >= 1    && t   <= tmp[m-1];
 }
 
+
+int main(){
+  //Aufgabe 8.6
+  Datum d(2,12,2014);
+  cout << "d="<< d << endl;
+
+  Datum d2(24,12,2014);
+  cout << "d2="<< d2 << endl;
+
+  Datum d3(24,12,2014);
+  cout << "d3="<< d3 << endl;
+
+  //Aufgabe 8.7
+  bool eq = d == d2;
+  cout << "d==d2 :" << boolalpha <<eq << endl; 
+  eq = d2 == d3;
+  cout << "d2==d3 :"  <<eq << endl; 
+
+  bool ne = d != d2;
+  cout << "d!=d2 :" << boolalpha <<ne << endl; 
+  ne = d2 != d3;
+  cout << "d2!=d3 :"  <<ne << endl; 
+
+  bool lt = d < d2;
+  cout << d << " < " << d2 << " = " << lt << endl;
+  lt = d2 < d3;
+  cout << d2 << " < " << d3 << " = " << lt << endl;
+  lt = d < d3;
+  cout << d << " < " << d3 << " = " << lt << endl;
+
+  //Aufgabe 8.8
+  int diff = DatumDifferenz(d,d2);
+  cout << "|d-d2|=" << diff << endl;
+
+  diff = DatumDifferenz(d3,d2);
+  cout << "|d3-d2|=" << diff << endl;
+
+  //Aufgabe 8.9
+  try{
+    d.set(0,-12,500);
+  } catch (UngueltigesDatumException& r){
+    cout << r.what() << endl;
+  }
+}
