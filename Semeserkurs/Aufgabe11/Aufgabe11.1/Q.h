@@ -2,48 +2,52 @@
 #define Q
 
 #include <iostream>
-
 using namespace std;
 
-class Node{
-  public:
-    Node *next;
-    int content;
-    Node(int c) :next(nullptr), content(c) {};
-    Node(int c, Node *n) : next(n), content(c) {}
-    bool hasNext(){
-      return next==nullptr;
-    }
-};
+#include "q_iterator.h"
 
+template<class T>
 class MyQueue{
   private:
-    Node *first;
-    Node *last;
+    Node<T> *first;
+    Node<T> *last;
     int size;
   public:
-    MyQueue(): first(nullptr), last(nullptr), size(0) {}
-    MyQueue(initializer_list<int> arg): first(nullptr), last(nullptr), size(0) {
+    MyQueue(): first(nullptr), last(nullptr), size(0) { cout << "CTOR" << endl;}
+    MyQueue(initializer_list<T> arg): first(nullptr), last(nullptr), size(0) {
         for(auto & elem : arg){
           push_back(elem);
         }
-    }
-    ~MyQueue(){
-      Node *current = first;
-      while(current != nullptr){
-        Node *toDelete = current;
-        current = current->next;
-        delete toDelete;
-      }
+        cout << "CTOR" << endl;
     }
 
-    void push_back(int elem);
-    int pop_front();
-    bool isEmpty() { return first==0; }
+    ~MyQueue(){
+      delete first;
+      cout << "DTOR"<< endl;
+    }
+
+    MyQueue(MyQueue && mv){
+      first = mv.first;
+      last = mv.last;
+      mv.first = nullptr;
+      mv.last = nullptr;
+      cout << "MOVE CTOR"<< endl;
+    }
+
+    MyQueue<T>& operator=(MyQueue<T> && mv){
+      if(this==&mv) return *this;
+      first = mv.first;
+      last = mv.last;
+      mv.first = nullptr;
+      mv.last = nullptr;
+      cout << "MOVE ASSIGN" << endl;
+    }
+
+    bool isEmpty() { return first==nullptr; }
     int getSize() { return size; }
 
   friend ostream& operator<<(ostream & stream, const MyQueue & q){
-    Node* current = q.first;
+    Node<T>* current = q.first;
     stream << "[";
     while(current!=nullptr){
       stream << current->content;
@@ -52,6 +56,32 @@ class MyQueue{
     }
     stream << "]";
     return stream;
+  }
+
+  q_iterator<T> begin() { return q_iterator<T>(first);}
+  q_iterator<T> end() { return q_iterator<T>(nullptr);}
+
+  void push_back(T elem){
+    if(isEmpty()){
+      first = new Node<T>(elem);
+      last = first;
+    } else {
+      Node<T> *newNode = new Node<T>(elem);
+      last->next = newNode;
+      last = newNode;
+    }
+    size++;
+  }
+
+  T pop_front(){
+    if(isEmpty()) throw "Queue is empty";
+    T toReturn = first->content;
+    Node<T> *toDelete = first;
+    first = first->next;
+    if(isEmpty()) last = nullptr;
+    size--;
+    delete toDelete;
+    return toReturn;
   }
 };
 

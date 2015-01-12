@@ -41,7 +41,7 @@ int readExpr(){
 
 void overreadBlanks(){
     char c;
-    if(isspace(cin.peek()))
+    if( (cin.peek()!='\n') && isspace(cin.peek()))
         cin.get(c);
 }
 
