@@ -22,7 +22,12 @@ class MyQueue{
     }
 
     ~MyQueue(){
-      delete first;
+      Node<T> *current = first;
+      while(current != nullptr) {
+          Node<T> *toDel = current;
+          current = current-> next;
+          delete toDel;
+      }
       cout << "DTOR"<< endl;
     }
 
